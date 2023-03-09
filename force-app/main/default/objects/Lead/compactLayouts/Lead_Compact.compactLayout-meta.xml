@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Compact</fullName>
+    <fields>Name</fields>
+    <fields>Title</fields>
+    <fields>Company</fields>
+    <fields>Conversion_Date__c</fields>
+    <fields>Phone</fields>
+    <fields>MobilePhone</fields>
+    <fields>Email</fields>
+    <label>Lead Compact</label>
+</CompactLayout>
