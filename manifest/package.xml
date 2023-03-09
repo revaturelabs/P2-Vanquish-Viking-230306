@@ -3,6 +3,7 @@
     <types>
         <members>Customer_Success_Story__c</members>
         <members>Account</members>
+        <members>Lead</members>
         <name>CustomObject</name>
     </types>
     <version>56.0</version> 
