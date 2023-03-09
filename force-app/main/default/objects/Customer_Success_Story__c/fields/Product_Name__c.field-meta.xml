@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Name__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Name of the product that lead to success.</description>
+    <externalId>false</externalId>
+    <label>Product Name</label>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>Customer Success Stories</relationshipLabel>
+    <relationshipName>Customer_Success_Stories</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
