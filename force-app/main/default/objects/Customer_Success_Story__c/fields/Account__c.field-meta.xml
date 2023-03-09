@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account__c</fullName>
+    <description>Account that is giving positive feedback on product</description>
+    <externalId>false</externalId>
+    <label>Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Customer Success Stories</relationshipLabel>
+    <relationshipName>Customer_Success_Stories</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>
