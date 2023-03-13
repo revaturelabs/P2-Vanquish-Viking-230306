@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Environmental_Fee</fullName>
+    <active>true</active>
+    <description>For tracking the extra environmental fee on paper good orders.</description>
+    <label>Environmental Fee</label>
+    <picklistValues>
+        <picklist>Family</picklist>
+        <values>
+            <fullName>Desktop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environmental Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Laptop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Office Furniture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Organization %26 Storage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paper Goods</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Server</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Writing Implements</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>QuantityUnitOfMeasure</picklist>
+        <values>
+            <fullName>Each</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Required_Software__c</picklist>
+        <values>
+            <fullName>Adobe Creative Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Git %2F GitBash</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Java Developer Kit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Java Runtime Environment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Linux OS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mac OSX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Microsoft Office Suite</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Microsoft VSC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Windows OS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
