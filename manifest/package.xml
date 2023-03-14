@@ -11,15 +11,23 @@
         <members>Work_Order__c</members>
         <name>CustomTab</name>
     </types>
-<types>
-    <members>Product2.Required_Software__c</members>
-    <name>CustomField</name>
-</types>
+    <types>
+        <members>Product2.Required_Software__c</members>
+        <name>CustomField</name>
+    </types>
     <types>
         <members>Product2.Office_Supply</members>
         <members>Product2.Office_Infrastructure</members>
         <members>Product2.Environmental_Fee</members>
         <name>RecordType</name>
+    </types>
+    <types>
+        <members>OrderTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>OrderTriggerHelper</members>
+        <name>ApexClass</name>
     </types>
     <version>56.0</version> 
 </Package>
