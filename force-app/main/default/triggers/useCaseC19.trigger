@@ -6,7 +6,7 @@ trigger useCaseC19 on Work_Order__c (before insert, before update) {
     for (Work_Order__c wo : Trigger.new) {
         accountIds.add(wo.Account__c);
     }
-
+      
     List<Contact> contacts = [SELECT Id, AccountId, Is_Service_Technician__c FROM Contact WHERE AccountId IN :accountIds AND Is_Service_Technician__c = true];
     for(Contact c : contacts) {
         if(!accToServiceMap.containsKey(c.AccountId)) {
@@ -22,3 +22,5 @@ trigger useCaseC19 on Work_Order__c (before insert, before update) {
     }
 
 }
+
+//Still Working!
