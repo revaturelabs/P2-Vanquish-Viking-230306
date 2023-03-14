@@ -11,16 +11,18 @@
         <members>Work_Order__c</members>
         <name>CustomTab</name>
     </types>
-<types>
+    <types>
     <members>Product2.Required_Software__c</members>
     <name>CustomField</name>
-</types>
+    </types>
+   <!--
     <types>
         <members>Product2.Office_Supply</members>
         <members>Product2.Office_Infrastructure</members>
         <members>Product2.Environmental_Fee</members>
         <name>RecordType</name>
     </types>
+      -->
     <version>56.0</version> 
 </Package>
 
@@ -30,3 +32,5 @@
     <name></name>
 </types>
 -->
+
+<!--sfdx force:source:retrieve -x./manifest/package.xml-->
