@@ -5,6 +5,15 @@
     <description>Technician assigned to this work order via their Contact.</description>
     <externalId>false</externalId>
     <label>Assigned Technician</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Contact.Service_Technician__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Work Orders</relationshipLabel>
     <relationshipName>Work_Orders</relationshipName>

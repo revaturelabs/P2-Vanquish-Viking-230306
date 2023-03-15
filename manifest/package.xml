@@ -4,6 +4,7 @@
         <members>Customer_Success_Story__c</members>
         <!--<members>Account</members>
         <members>Lead</members>-->
+        <members>Contact</members>
         <members>Work_Order__c</members>
         <name>CustomObject</name>
     </types>
@@ -14,6 +15,10 @@
     <types>
     <members>Product2.Required_Software__c</members>
     <name>CustomField</name>
+    </types>
+    <types>
+    <members>useCaseC19</members>
+    <name>ApexTrigger</name>
     </types>
    <!--
     <types>
