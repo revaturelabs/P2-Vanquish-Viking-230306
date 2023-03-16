@@ -17,10 +17,12 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>UseCaseC23</members>
         <members>useCaseC19</members>
         <name>ApexTrigger</name>
     </types>
     <types>
+        <members>UseCaseC23Helper</members>
         <members>UseCasec19Helper</members>
         <name>ApexClass</name>
     </types>
