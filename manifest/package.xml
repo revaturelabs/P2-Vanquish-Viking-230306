@@ -13,12 +13,18 @@
         <name>CustomTab</name>
     </types>
     <types>
-    <members>Product2.Required_Software__c</members>
-    <name>CustomField</name>
+        <members>Product2.Required_Software__c</members>
+        <name>CustomField</name>
     </types>
     <types>
-    <members>useCaseC19</members>
-    <name>ApexTrigger</name>
+        <members>UseCaseC23</members>
+        <members>useCaseC19</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>UseCaseC23Helper</members>
+        <members>UseCasec19Helper</members>
+        <name>ApexClass</name>
     </types>
    <!--
     <types>
