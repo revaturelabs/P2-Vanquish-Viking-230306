@@ -19,11 +19,13 @@
     <types>
         <members>UseCaseC23</members>
         <members>useCaseC19</members>
+        <members>CustomerStoryTrigger</members>
         <name>ApexTrigger</name>
     </types>
     <types>
         <members>UseCaseC23Helper</members>
         <members>UseCasec19Helper</members>
+        <members>CustomerStoryHelper</members>
         <name>ApexClass</name>
     </types>
    <!--
