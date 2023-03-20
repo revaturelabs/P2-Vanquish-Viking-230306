@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Technician_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(Assigned_Technician__r.Service_Technician__c)</errorConditionFormula>
+    <errorMessage>Sorry, only service technicians can be selected!</errorMessage>
+</ValidationRule>

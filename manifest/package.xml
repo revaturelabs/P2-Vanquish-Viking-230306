@@ -4,6 +4,7 @@
         <members>Customer_Success_Story__c</members>
         <!--<members>Account</members>
         <members>Lead</members>-->
+        <members>Contact</members>
         <members>Work_Order__c</members>
         <name>CustomObject</name>
     </types>
@@ -16,19 +17,25 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>UseCaseC23</members>
+        <members>useCaseC19</members>
+        <members>CustomerStoryTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>UseCaseC23Helper</members>
+        <members>UseCasec19Helper</members>
+        <members>CustomerStoryHelper</members>
+        <name>ApexClass</name>
+    </types>
+   <!--
+    <types>
         <members>Product2.Office_Supply</members>
         <members>Product2.Office_Infrastructure</members>
         <members>Product2.Environmental_Fee</members>
         <name>RecordType</name>
     </types>
-    <types>
-        <members>OrderTrigger</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>OrderTriggerHelper</members>
-        <name>ApexClass</name>
-    </types>
+      -->
     <version>56.0</version> 
 </Package>
 
@@ -38,3 +45,5 @@
     <name></name>
 </types>
 -->
+
+<!--sfdx force:source:retrieve -x./manifest/package.xml-->
