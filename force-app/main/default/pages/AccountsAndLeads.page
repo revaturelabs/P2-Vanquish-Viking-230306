@@ -1,0 +1,57 @@
+<!--
+    Author: Chase Johns
+    Last Modified: 3/21/23
+    Description: Visualforce Page for Viewing, Creating, and Deleting both Accounts and Leads
+-->
+<apex:page controller="AccountsAndLeadsController">
+    <apex:form>
+        
+        <apex:pageBlock title="Accounts" tabStyle="Account">
+            <apex:pageBlockButtons>
+                <apex:commandButton action="{!createAccount}" value="New Account"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection id="AccountSearch">
+
+            </apex:pageBlockSection>
+
+            <apex:actionRegion id="AccountTable">
+                <apex:pageBlockTable value="{!accs}" var="acc">                    
+                    <apex:column value="{!acc.Name}"/>
+                    <apex:column value="{!acc.Rating}"/>
+                    <apex:column value="{!acc.AnnualRevenue}"/>
+                    <apex:column value="{!acc.Industry}"/>
+                    <apex:column value="{!acc.NumberOfEmployees}"/>
+                    <apex:column value="{!acc.Phone}"/>
+                    <apex:column value="{!acc.BillingCity}"/>
+                    <apex:column value="{!acc.BillingState}"/>
+                </apex:pageBlockTable>
+            </apex:actionRegion>
+        </apex:pageBlock>
+
+        <apex:pageBlock title="Leads" tabStyle="Lead">
+            <apex:pageBlockButtons>
+                <apex:commandButton action="{!createLead}" value="New Lead"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection id="LeadSearch">
+
+            </apex:pageBlockSection>
+
+            <apex:actionRegion id="LeadTable">
+                <apex:pageBlockTable value="{!leads}" var="lead">
+                    <apex:column value="{!lead.FirstName}"/>
+                    <apex:column value="{!lead.LastName}"/>
+                    <apex:column value="{!lead.Status}"/>
+                    <apex:column value="{!lead.Company}"/>
+                    <apex:column value="{!lead.Title}"/>
+                    <apex:column value="{!lead.Industry}"/>
+                    <apex:column value="{!lead.Rating}"/>
+                    <apex:column value="{!lead.Phone}"/>
+                    <apex:column value="{!lead.Email}"/>
+                </apex:pageBlockTable>
+            </apex:actionRegion>
+        </apex:pageBlock>
+
+    </apex:form>
+</apex:page>
