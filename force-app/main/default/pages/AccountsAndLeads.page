@@ -4,10 +4,10 @@
     Description: Visualforce Page for Viewing, Creating, and Deleting both Accounts and Leads
 -->
 <apex:page controller="AccountsAndLeadsController">
-    <apex:form>
+    <apex:form >
         
         <apex:pageBlock title="Accounts" tabStyle="Account">
-            <apex:pageBlockButtons>
+            <apex:pageBlockButtons >
                 <apex:commandButton action="{!createAccount}" value="New Account"/>
             </apex:pageBlockButtons>
 
@@ -30,7 +30,7 @@
         </apex:pageBlock>
 
         <apex:pageBlock title="Leads" tabStyle="Lead">
-            <apex:pageBlockButtons>
+            <apex:pageBlockButtons >
                 <apex:commandButton action="{!createLead}" value="New Lead"/>
             </apex:pageBlockButtons>
 
