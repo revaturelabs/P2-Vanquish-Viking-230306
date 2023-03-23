@@ -1,12 +1,12 @@
 <!--
     Author: Chase Johns
-    Last Modified: 3/21/23
+    Last Modified: 3/23/23
     Description: Visualforce Page for Viewing, Creating, and Deleting both Accounts and Leads
 -->
 <apex:page controller="AccountsAndLeadsController">
 
-    <apex:form>
-        <apex:pageMessages/>
+    <apex:form >
+        <apex:pageMessages />
 <!--_______________________________________________________________________________________________________________________________________________-->      
         <apex:pageBlock title="Accounts" tabStyle="Account">
            
@@ -14,7 +14,7 @@
 
             </apex:pageBlockSection>
 
-            <apex:actionRegion  id="AccountInfo" rendered="{!accountInfoDisplay}" >
+            <apex:actionRegion id="AccountInfo" rendered="{!accountInfoDisplay}" >
                 <apex:variable var="accIndex" value="{!0}" />
                 <apex:pageBlockTable value="{!accs}" var="acc" align="center">                   
                     <apex:column value="{!acc.Name}"/>
@@ -44,7 +44,7 @@
                 <apex:commandButton action="{!cancelAccountDelete}" value="Cancel" immediate="true"/>
             </apex:actionRegion>
 
-            <apex:actionRegion  id="AccountCreator" rendered="{!accountCreateDisplay}">
+            <apex:actionRegion id="AccountCreator" rendered="{!accountCreateDisplay}">
                 <apex:pageBlockSection columns="2" title="New Account" collapsible="false">
                     <apex:inputField value="{!desiredAccount.Name}"/>
                     <apex:inputField value="{!desiredAccount.Rating}"/>
@@ -70,7 +70,7 @@
             </apex:pageBlockSection>
 
             <apex:actionRegion id="LeadInfo" rendered="{!leadInfoDisplay}">
-                <apex:pageBlockTable  value="{!leads}" var="lead" align="center">
+                <apex:pageBlockTable value="{!leads}" var="lead" align="center">
                     <apex:column value="{!lead.FirstName}"/>
                     <apex:column value="{!lead.LastName}"/>
                     <apex:column value="{!lead.Status}"/>
