@@ -1,0 +1,37 @@
+<apex:page controller="UseCaseC30Controller" sidebar="false">
+    <apex:form >
+        <apex:pageBlock title="All Contacts">
+            <apex:pageBlockSection id="allContacts" >
+                <apex:pageBlockTable value="{!customerContacts}" var="c">
+                    <apex:column value="{!c.FirstName}" headerValue="First Name" />
+                    <apex:column value="{!c.LastName}" headerValue="Last Name"/>
+                    <apex:column headerValue="Action">
+                        <apex:commandLink value="Delete " action="{!deleteContact}">
+                            <apex:param name="contactId" value="{!c.Id}" assignTo="{!contactToDeleteId}"/>
+                        </apex:commandLink>
+                    </apex:column>
+                    <apex:column value="{!c.AccountId}" headerValue="Account"/>
+                    <apex:column value="{!c.Phone}" headerValue="Phone" />
+                    <apex:column value="{!c.Email}" headerValue="Email" />
+                    <apex:column value="{!c.Department}" headerValue="Department"/>
+                    <apex:column value="{!c.DoNotCall}" headerValue="Do Not Call"/>
+                    <apex:column value="{!c.Service_Technician__c}" headerValue="Service Technician" />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+		</apex:pageBlock>
+    </apex:form>
+    <apex:form >
+        <apex:pageBlock title="Create New Contacts">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="New Contact" action="{!saveNewCustomerContact}" rerender="allContacts"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="technicianContactForm" columns="2">
+                <apex:inputField value="{!newCustomerContact.FirstName}" label="First Name" />
+                <apex:inputField value="{!newCustomerContact.LastName}" label="Last Name" />
+                <apex:inputField value="{!newCustomerContact.Phone}" label="Phone" />
+                <apex:inputField value="{!newCustomerContact.Email}" label="Email" />
+                <apex:inputField value="{!newCustomerContact.Service_Technician__c}" label="Service Technician"/>
+	   		</apex:pageBlockSection>
+		</apex:pageBlock>
+    </apex:form>
+</apex:page>
