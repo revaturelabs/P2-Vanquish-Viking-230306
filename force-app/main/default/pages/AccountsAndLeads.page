@@ -1,22 +1,29 @@
 <!--
     Author: Chase Johns
-    Last Modified: 3/21/23
+    Last Modified: 3/24/23
     Description: Visualforce Page for Viewing, Creating, and Deleting both Accounts and Leads
 -->
 <apex:page controller="AccountsAndLeadsController">
+    
     <apex:form >
+        <apex:pageMessages />
+<!--_______________________________________________________________________________________________________________________________________________-->      
+        
+        <c:FBC_Logo ></c:FBC_Logo>
         
         <apex:pageBlock title="Accounts" tabStyle="Account">
-            <apex:pageBlockButtons >
-                <apex:commandButton action="{!createAccount}" value="New Account"/>
-            </apex:pageBlockButtons>
-
-            <apex:pageBlockSection id="AccountSearch">
-
+           
+        <apex:actionRegion id="AccountInfo" rendered="{!accountInfoDisplay}" >
+            <apex:pageBlockSection id="AccountSearch" title="Search for Accounts by Name" columns="1" collapsible="false">
+                <apex:inputText value="{!accSearchTerm}" >
+                    <apex:actionSupport event="onchange" reRender="AccountInfo"  />
+                </apex:inputText>
+                <apex:commandButton action="{!executeAccSearch}" value="Search" />
+                <apex:commandButton action="{!clearAccSearch}" value="Reset Search" /> 
             </apex:pageBlockSection>
 
-            <apex:actionRegion id="AccountTable">
-                <apex:pageBlockTable value="{!accs}" var="acc">                    
+            
+                <apex:pageBlockTable value="{!displayedAccs}" var="acc" align="center">                   
                     <apex:column value="{!acc.Name}"/>
                     <apex:column value="{!acc.Rating}"/>
                     <apex:column value="{!acc.AnnualRevenue}"/>
@@ -26,20 +33,55 @@
                     <apex:column value="{!acc.BillingCity}"/>
                     <apex:column value="{!acc.BillingState}"/>
                 </apex:pageBlockTable>
+
+                <apex:actionSupport reRender="AccountInfo"/>
+                <apex:pageBlockSection columns="2">
+                    <apex:commandButton action="{!createAccount}" value="New Account"/>
+                    <apex:commandButton action="{!displayAccountDelete}" value="Delete Account"/>
+                </apex:pageBlockSection>
+                
             </apex:actionRegion>
+
+            <apex:actionRegion id="AccountDelete" rendered="{!deleteAccountDisplay}">
+                <apex:selectList size="1" value="{!accToDelete}">
+                    <apex:selectOptions value="{!deleteOptions}" />
+                </apex:selectList>
+                <apex:actionSupport reRender="AccountDelete" />
+                <apex:commandButton action="{!deleteAccount}" value="Confirm Delete" />
+                <apex:commandButton action="{!cancelAccountDelete}" value="Cancel" immediate="true"/>
+            </apex:actionRegion>
+
+            <apex:actionRegion id="AccountCreator" rendered="{!accountCreateDisplay}">
+                <apex:pageBlockSection columns="2" title="New Account" collapsible="false">
+                    <apex:inputField value="{!desiredAccount.Name}"/>
+                    <apex:inputField value="{!desiredAccount.Rating}"/>
+                    <apex:inputField value="{!desiredAccount.AnnualRevenue}"/>
+                    <apex:inputField value="{!desiredAccount.Industry}"/>
+                    <apex:inputField value="{!desiredAccount.NumberOfEmployees}"/>
+                    <apex:inputField value="{!desiredAccount.Phone}"/>
+                    <apex:inputField value="{!desiredAccount.BillingCity}"/>
+                    <apex:inputField value="{!desiredAccount.BillingState}"/>
+                </apex:pageBlockSection>
+                <apex:commandButton value="Save" action="{!saveAccount}" />
+                <apex:commandButton value="Cancel" action="{!cancelAccountSave}" immediate="true"/>
+                <apex:actionSupport reRender="AccountCreator" />
+            </apex:actionRegion>
+
         </apex:pageBlock>
-
+<!--_______________________________________________________________________________________________________________________________________________-->
         <apex:pageBlock title="Leads" tabStyle="Lead">
-            <apex:pageBlockButtons >
-                <apex:commandButton action="{!createLead}" value="New Lead"/>
-            </apex:pageBlockButtons>
 
-            <apex:pageBlockSection id="LeadSearch">
-
+        <apex:actionRegion id="LeadInfo" rendered="{!leadInfoDisplay}">
+            <apex:pageBlockSection id="LeadSearch" title="Search for Leads by Company" columns="1" collapsible="false">
+                <apex:inputText value="{!leadSearchTerm}" >
+                    <apex:actionSupport event="onchange" reRender="LeadInfo"  />
+                </apex:inputText>
+                    <apex:commandButton action="{!executeLeadSearch}" value="Search" />
+                    <apex:commandButton action="{!clearLeadSearch}" value="Reset Search" />
             </apex:pageBlockSection>
 
-            <apex:actionRegion id="LeadTable">
-                <apex:pageBlockTable value="{!leads}" var="lead">
+            
+                <apex:pageBlockTable value="{!displayedLeads}" var="lead" align="center">
                     <apex:column value="{!lead.FirstName}"/>
                     <apex:column value="{!lead.LastName}"/>
                     <apex:column value="{!lead.Status}"/>
@@ -50,8 +92,40 @@
                     <apex:column value="{!lead.Phone}"/>
                     <apex:column value="{!lead.Email}"/>
                 </apex:pageBlockTable>
+                <apex:actionSupport reRender="LeadInfo" />
+                <apex:pageBlockSection columns="2">
+                    <apex:commandButton action="{!createLead}" value="New Lead"/>
+                    <apex:commandButton action="{!displayLeadDelete}" value="Delete Lead"/>
+                </apex:pageBlockSection>
             </apex:actionRegion>
-        </apex:pageBlock>
 
+            <apex:actionRegion id="LeadDelete" rendered="{!deleteLeadDisplay}">
+                <apex:selectList size="1" value="{!leadToDelete}">
+                    <apex:selectOptions value="{!deleteOptions}" />
+                </apex:selectList>
+                <apex:actionSupport reRender="LeadDelete" />
+                <apex:commandButton action="{!deleteLead}" value="Confirm Delete" />
+                <apex:commandButton action="{!cancelLeadDelete}" value="Cancel" immediate="true"/>
+            </apex:actionRegion>
+
+            <apex:actionRegion id="LeadCreator" rendered="{!leadCreateDisplay}">
+                <apex:pageBlockSection columns="2" title="New Lead" collapsible="false" >
+                    <apex:inputField value="{!desiredLead.FirstName}"/>
+                    <apex:inputField value="{!desiredLead.LastName}"/>
+                    <apex:inputField value="{!desiredLead.Status}"/>
+                    <apex:inputField value="{!desiredLead.Company}"/>
+                    <apex:inputField value="{!desiredLead.Title}"/>
+                    <apex:inputField value="{!desiredLead.Industry}"/>
+                    <apex:inputField value="{!desiredLead.Rating}"/>
+                    <apex:inputField value="{!desiredLead.Phone}"/>
+                    <apex:inputField value="{!desiredLead.Email}"/>
+                </apex:pageBlockSection>
+                <apex:commandButton action="{!saveLead}" value="Save"/>
+                <apex:commandButton action="{!cancelLeadSave}" value="Cancel" immediate="true"/>
+                <apex:actionSupport reRender="LeadCreator" />
+            </apex:actionRegion>
+
+        </apex:pageBlock>
+<!--_______________________________________________________________________________________________________________________________________________-->
     </apex:form>
 </apex:page>

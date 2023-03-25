@@ -1,5 +1,5 @@
 /*  Author: Chase Johns
-    Last Modified: 3/23/23
+    Last Modified: 3/25/23
     Description: Test Class for the AccountsAndLeads Visualforce page and its Custom Controller
 */
 
@@ -9,7 +9,8 @@ public class AccountsAndLeadsTest {
     @testSetup
     public static void simulateInitialPageLoad(){
         List<Account> testAccounts = AccountsAndLeadsDataFactory.generateAccounts(20);
-        List<Lead> testLeads = AccountsAndLeadsDataFactory.generateLeads(20);
+        List<Lead> testLeads = AccountsAndLeadsDataFactory.generateLeads(21);
+        testLeads[20].Company = 'Okumura Foods';
         insert testAccounts;
         insert testLeads;
     }
@@ -81,14 +82,15 @@ public class AccountsAndLeadsTest {
         Account accToAssert = testController.accs[testController.accs.size()-1];
         String accName = testController.accs[testController.accs.size()-1].Name;
         Test.startTest();
+        System.assertEquals(false,testController.deleteAccountDisplay);
         //Simulating the necessary page navigation
         testController.displayAccountDelete();
+        System.assertEquals(true,testController.deleteAccountDisplay);
         //Selecting the last account in the list to delete for assertion purposes
         testController.accToDelete = accName;
         testController.deleteAccount();
-        System.assertNotEquals(accToAssert, testController.accs[testController.accs.size()-1]);
-        System.assertEquals(false,testController.deleteAccountDisplay);
         Test.stopTest();
+        System.assertNotEquals(accToAssert, testController.displayedAccs[testController.displayedAccs.size()-1]);
     }
     
     //Simulating a user deleting a lead
@@ -99,14 +101,15 @@ public class AccountsAndLeadsTest {
         Lead leadToAssert = testController.leads[testController.leads.size()-1];
         String leadLastName = testController.leads[testController.leads.size()-1].LastName;
         Test.startTest();
+        System.assertEquals(false,testController.deleteLeadDisplay);
         //Simulating the necessary page navigation
         testController.displayLeadDelete();
+        System.assertEquals(true,testController.deleteLeadDisplay);
         //Selecting the last lead in the list to delete for assertion purposes
         testController.leadToDelete = leadLastName;
         testController.deleteLead();
-        System.assertNotEquals(leadToAssert, testController.leads[testController.leads.size()-1]);
-        System.assertEquals(false,testController.deleteLeadDisplay);
         Test.stopTest();
+        System.assertNotEquals(leadToAssert, testController.displayedLeads[testController.displayedLeads.size()-1]);
     }
     
     //Simulating a user canceling a delete for both sObjects
@@ -123,6 +126,56 @@ public class AccountsAndLeadsTest {
         testController.cancelAccountDelete();
         System.assertEquals(false, testController.deleteAccountDisplay);
         Test.stopTest();
+    }
+    
+    //Simulating a user searching for a desired account
+    @isTest
+    public static void tp_searchForAccount(){
+        AccountsAndLeadsController testController = new AccountsAndLeadsController();
+        Test.startTest();
+        testController.accSearchTerm = 'Test Acc Name 14';
+        testController.executeAccSearch();
+        Test.stopTest();
+        System.assertEquals(1, testController.displayedAccs.size());
+        System.assertEquals('Test Acc Name 14',testController.displayedAccs[0].Name);
+    }
+    
+    //Simulating a user searching for a desired lead
+    @isTest
+    public static void tp_searchForLead(){
+        AccountsAndLeadsController testController = new AccountsAndLeadsController();
+        Test.startTest();
+        testController.leadSearchTerm = 'Okumura Foods';
+        testController.executeLeadSearch();
+        Test.stopTest();
+        System.assertEquals(1, testController.displayedLeads.size());
+        System.assertEquals('Okumura Foods',testController.displayedLeads[0].Company);
+    }
+    
+    //Simulating an account search being cancelled
+    @isTest
+    public static void tp_clearAccSearch(){
+        AccountsAndLeadsController testController = new AccountsAndLeadsController();
+        Test.startTest();
+        testController.accSearchTerm = 'Test Acc Name 9';
+        testController.executeAccSearch();
+        testController.clearAccSearch();
+        Test.stopTest();
+        System.assertEquals(testController.accs.size(), testController.displayedAccs.size());
+        System.assertEquals('',testController.accSearchTerm);
+    }
+    
+        //Simulating a lead search being cancelled
+    @isTest
+    public static void tp_clearLeadSearch(){
+        AccountsAndLeadsController testController = new AccountsAndLeadsController();
+        Test.startTest();
+        testController.leadSearchTerm = 'Okumura Foods';
+        testController.executeLeadSearch();
+        testController.clearLeadSearch();
+        Test.stopTest();
+        System.assertEquals(testController.leads.size(), testController.displayedLeads.size());
+        System.assertEquals('',testController.leadSearchTerm);
     }
 
 }
