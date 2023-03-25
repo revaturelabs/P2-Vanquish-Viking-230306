@@ -9,7 +9,7 @@
         <apex:pageMessages />
 <!--_______________________________________________________________________________________________________________________________________________-->      
         <apex:pageBlock title="Accounts" tabStyle="Account">
-          
+           
             <apex:pageBlockSection id="AccountSearch">
 
             </apex:pageBlockSection>
@@ -63,6 +63,7 @@
         </apex:pageBlock>
 <!--_______________________________________________________________________________________________________________________________________________-->
         <apex:pageBlock title="Leads" tabStyle="Lead">
+
 
             <apex:pageBlockSection id="LeadSearch">
 
