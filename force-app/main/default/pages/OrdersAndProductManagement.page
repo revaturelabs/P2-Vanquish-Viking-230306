@@ -1,0 +1,89 @@
+<apex:page controller="OrdersAndProductsController">
+    <apex:form >
+        <apex:pageBlock tabStyle="Order">
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandButton value="Update Change(s) to Order" action="{!saveChanges}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="OrderDisplay"  title="Orders In System" columns="2"> 
+                <apex:pageBlockTable value="{!orders}" var="order">
+                    <apex:column headerValue="Order Name">
+                        <apex:outputField value="{!order.Name}">
+                            <apex:inlineEditSupport />
+                        </apex:outputField>
+                    </apex:column>
+                    <apex:column value="{!order.OrderNumber}"/>
+                    <apex:column value="{!order.TotalAmount}"/>
+                    <apex:column headerValue="Order Status">
+                        <apex:outputField value="{!order.Status}">
+                            <apex:inlineEditSupport />
+                        </apex:outputField>
+                    </apex:column>
+                </apex:pageBlockTable>
+                <apex:pageBlockTable value="{!items}" var="item">
+                    <apex:column headerValue="OrderName">
+                        <apex:outPutField value="{!item.OrderName__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Product">
+                        <apex:outPutField value="{!item.Product2Id}"/>
+                    </apex:column>
+                    <apex:column value="{!item.UnitPrice}"/>
+                    <apex:column headerValue="Quantity">
+                        <apex:outPutField value="{!item.Quantity}">
+                            <apex:inlineEditSupport />
+                        </apex:outPutField>
+                    </apex:column>
+                    <apex:column value="{!item.TotalPrice}"/>
+                    <apex:column headerValue="Order Id">
+                        <apex:outPutField value="{!item.OrderId}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:form >
+        <apex:pageBlock tabStyle="Order">
+            <apex:pageBlockButtons location="Bottom"> 
+                <apex:commandButton value="Save New Order" action="{!saveNewOrder}"/> 
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Add New Order">
+                <apex:inputText value="{!orderName}" label="Order Name"/>
+                <apex:selectList value="{!accName}" size="1" label="Select Account">
+                    <apex:selectOptions value="{!AccountOptions}"/>
+                </apex:selectList>
+                <apex:inputField value="{!inputOrder.EffectiveDate}" /> 
+                <apex:inputField value="{!inputOrder.Status}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:form >
+        <apex:pageBlock tabStyle="Order">
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandButton value="Delete Order" action="{!deleteOrder}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Delete Order">
+                <apex:selectList value="{!orderToDelete}" size="1">
+                    <apex:SelectOptions value="{!OrderOptions}"/>
+                </apex:selectList>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:form >
+        <apex:pageBlock tabStyle="Order">
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandButton value="Add Product To Order" action="{!saveOrderItem}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Add Product To Order">
+                <apex:selectList value="{!bookName}" size="1" label="Select PriceBook">
+                    <apex:selectOptions value="{!BookOptions}"/>
+                </apex:selectList>
+                <apex:selectList value="{!orderNameProd}" size="1" label="Order Adding To:">
+                    <apex:selectOptions value="{!OrderOptions}"/>
+                </apex:selectList>
+                <apex:inputField value="{!itemToAdd.Product2Id}"/>
+                <apex:inputField value="{!itemToAdd.Quantity}"/>
+                <apex:inputField value="{!itemToAdd.UnitPrice}"/> 
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:image url="{!$Resource.FBC_Logo}" alt="Logo for FBC"/>
+</apex:page>

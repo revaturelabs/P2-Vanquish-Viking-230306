@@ -6,9 +6,10 @@
         <members>Lead</members>
         <members>Contact</members>
         <members>Work_Order__c</members>
+        <members>Order</members>
         <name>CustomObject</name>
     </types>
-    <types>
+   <types>
         <members>Work_Order__c</members>
         <name>CustomTab</name>
     </types>
@@ -18,7 +19,7 @@
     </types>
     <types>
         <members>UseCaseC23</members>
-        <members>useCaseC19</members>
+        <members>useCaseC19</members>-->
         <members>CustomerStoryTrigger</members>
         <members>OrderItemTrigger</members>
         <name>ApexTrigger</name>
@@ -29,8 +30,9 @@
         <members>UseCasec19Helper</members>
         <members>CustomerStoryHelper</members> 
         <members>CustomerStoryHelperTest</members> 
+        <members>OrdersAndProductsController</members> 
         <members>AccountsAndLeadsController</members>
-        <members>AccountsAndLeadsTest</members> 
+        <!--<members>AccountsAndLeadsTest</members>--> 
         <members>AccountsAndLeadsDataFactory</members> 
         <members>OrderItemTriggerHelper</members>
         <members>OrderItemTriggerTest</members>
@@ -40,8 +42,7 @@
         <members>UseCaseC23Test</members>
         <name>ApexClass</name>
     </types>
-   <!--
-    <types>
+    <!--<types>
         <members>Product2.Office_Supply</members>
         <members>Product2.Office_Infrastructure</members>
         <members>Product2.Environmental_Fee</members>
@@ -50,7 +51,8 @@
       
     <types>
         <members>UseCaseC30</members>-
-        <members>AccountsAndLeads</members>
+        <members>AccountsAndLeads</members>-->
+        <members>OrdersAndProductManagement</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -60,7 +62,7 @@
     <types>
 		<members>FBCJPG</members>
 		<name>StaticResource</name>
-	</types>
+	</types>-->
     <version>56.0</version> 
 </Package>
 
