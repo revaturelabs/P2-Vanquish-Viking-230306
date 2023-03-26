@@ -1,3 +1,7 @@
+/*Created By: Khalil Newsome
+ * Last Updated: 03/26/2023
+ * Description: Controller for Order And Product Management VF page
+ */
 public class OrdersAndProductsController {
     
     public List<Order> orders {get;set;}
@@ -16,11 +20,13 @@ public class OrdersAndProductsController {
     public String bookName{get;set;}
     public List<Order> orderOpts;
     public Order orderOwner;
+    public Account needAccId;
     
     public OrdersAndProductsController(){
         orders=[SELECT Name,OrderNumber,TotalAmount,Status,Pricebook2Id,(SELECT Quantity,Product2Id,TotalPrice FROM OrderItems) FROM Order];
         accounts=[SELECT Id,Name FROM Account];
         products=[SELECT Id,Name FROM Product2 WHERE IsActive=true];
+        pricebooks=[SELECT Id, Name FROM Pricebook2 WHERE IsActive=true];
         inputOrder= new Order();
         itemToAdd= new OrderItem();
         orderOpts=[SELECT Name,OrderNumber,Pricebook2Id,TotalAmount FROM Order WHERE Name != null];
@@ -41,6 +47,7 @@ public class OrdersAndProductsController {
         }
         
         orderOwner = new Order();
+        needAccId= new Account();
     }
     
     public List<SelectOption> getAccountOptions(){
@@ -60,7 +67,7 @@ public class OrdersAndProductsController {
     }
     
     public List<SelectOption> getBookOptions(){
-        pricebooks=[SELECT Id, Name FROM Pricebook2 WHERE IsActive=true];
+        
         List<SelectOption> choices = new List<SelectOption>();
         for(PriceBook2 book:pricebooks){
             choices.add(new SelectOption(book.name,book.name));
@@ -79,7 +86,7 @@ public class OrdersAndProductsController {
     }
     
     public void saveNewOrder(){
-        Account needAccId= [SELECT Id FROM Account WHERE Name=:accName LIMIT 1];
+        needAccId = [SELECT Id FROM Account WHERE Name=:accName LIMIT 1];
         Id accId= needAccId.Id;
         insertingOrder = new Order(Name=orderName, AccountId = accId, EffectiveDate=inputOrder.EffectiveDate, Status=inputOrder.Status);
         insert insertingOrder;
@@ -103,6 +110,15 @@ public class OrdersAndProductsController {
         Order deletingOrder =[SELECT Name FROM Order WHERE Id=:orderToDelete LIMIT 1];
         delete deletingOrder;
        	
+    }
+    
+    public PageReference toAccounts(){
+        PageReference accPage = Page.AccountsAndLeads;
+        return accPage;
+    }
+    public PageReference toContacts(){
+        PageReference conPage = Page.UseCaseC30;
+        return conPage;
     }
     
 }
