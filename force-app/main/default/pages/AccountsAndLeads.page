@@ -1,6 +1,6 @@
 <!--
     Author: Chase Johns
-    Last Modified: 3/24/23
+    Last Modified: 3/25/23
     Description: Visualforce Page for Viewing, Creating, and Deleting both Accounts and Leads
 -->
 <apex:page controller="AccountsAndLeadsController">
@@ -91,6 +91,7 @@
                     <apex:column value="{!lead.Rating}"/>
                     <apex:column value="{!lead.Phone}"/>
                     <apex:column value="{!lead.Email}"/>
+                    <apex:column value="{!lead.Conversion_Date__c}"/>
                 </apex:pageBlockTable>
                 <apex:actionSupport reRender="LeadInfo" />
                 <apex:pageBlockSection columns="2">
