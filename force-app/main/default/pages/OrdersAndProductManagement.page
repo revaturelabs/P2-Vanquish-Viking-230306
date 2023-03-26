@@ -4,6 +4,10 @@
             <apex:pageBlockButtons location="Bottom">
                 <apex:commandButton value="Update Change(s) to Order" action="{!saveChanges}" />
             </apex:pageBlockButtons>
+            <apex:pageBlockButtons location="Top">
+                <apex:commandButton value="Go to Accounts and Lead Page" action="{!toAccounts}" />
+                <apex:commandButton value="Go to Contacts and Accounts" action="{!toContacts}"/>
+            </apex:pageBlockButtons>
             <apex:pageBlockSection id="OrderDisplay"  title="Orders In System" columns="2"> 
                 <apex:pageBlockTable value="{!orders}" var="order">
                     <apex:column headerValue="Order Name">

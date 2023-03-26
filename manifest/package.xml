@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <!--<types>
+    <types>
         <members>Customer_Success_Story__c</members>
         <members>Account</members>
         <members>Lead</members>
@@ -23,23 +23,23 @@
         <members>CustomerStoryTrigger</members>
         <members>OrderItemTrigger</members>
         <name>ApexTrigger</name>
-    </types>-->
+    </types>
     <types>
-        <!--<members>UseCaseC30Controller</members>
+       <members>UseCaseC30Controller</members>
         <members>UseCaseC23Helper</members>
         <members>UseCasec19Helper</members>
         <members>CustomerStoryHelper</members> 
-        <members>CustomerStoryHelperTest</members> -->
+        <members>CustomerStoryHelperTest</members> 
         <members>OrdersAndProductsController</members> 
         <members>AccountsAndLeadsController</members>
         <members>AccountsAndLeadsTest</members>
         <members>AccountsAndLeadsDataFactory</members> 
-        <!--<members>OrderItemTriggerHelper</members>
+        <members>OrderItemTriggerHelper</members>
         <members>OrderItemTriggerTest</members>
         <members>OrderItemTriggerDataFactory</members> 
         <members>UseCaseC30ControllerTest</members> 
         <members>UseCaseC19Test</members>
-        <members>UseCaseC23Test</members>-->
+        <members>UseCaseC23Test</members>
         <name>ApexClass</name>
     </types>
     <!--<types>
@@ -47,12 +47,11 @@
         <members>Product2.Office_Infrastructure</members>
         <members>Product2.Environmental_Fee</members>
         <name>RecordType</name>
-    </types>-->
-      
+    </types>--> 
     <types>
-       <!-- <members>UseCaseC30</members>-->
+        <members>UseCaseC30</members>
         <members>AccountsAndLeads</members>
-        <!--<members>OrdersAndProductManagement</members>-->
+        <members>OrdersAndProductManagement</members>
         <name>ApexPage</name>
     </types>
     <types>
