@@ -7,10 +7,12 @@
         <members>Contact</members>
         <members>Work_Order__c</members>
         <members>Order</members>
+        <members>OrderItem</members>
         <name>CustomObject</name>
     </types>
    <types>
         <members>Work_Order__c</members>
+        <members>Customer_Success_Story__c</members>
         <name>CustomTab</name>
     </types>
     <types>
