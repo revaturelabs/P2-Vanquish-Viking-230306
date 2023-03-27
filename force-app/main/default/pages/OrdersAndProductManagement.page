@@ -22,6 +22,9 @@
                             <apex:inlineEditSupport />
                         </apex:outputField>
                     </apex:column>
+                    <apex:column >
+                    	<apex:outputLink value="/lightning/r/Order/{!order.id}/view">Go to Order Record Page</apex:outputLink>
+                    </apex:column>
                 </apex:pageBlockTable>
                 <apex:pageBlockTable value="{!items}" var="item">
                     <apex:column headerValue="OrderName">
@@ -39,13 +42,18 @@
                     <apex:column value="{!item.TotalPrice}"/>
                     <apex:column headerValue="Order Id">
                         <apex:outPutField value="{!item.OrderId}"/>
-                    </apex:column>
+                    </apex:column> 
                 </apex:pageBlockTable>
+                <p>
+                        To add new Item to Order. Navigate to Order Record Page.<br/>
+                        Link is in table.
+                    </p>
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>
     <apex:form >
         <apex:pageBlock tabStyle="Order">
+            <apex:pageMessages id="messages"></apex:pageMessages>
             <apex:pageBlockButtons location="Bottom"> 
                 <apex:commandButton value="Save New Order" action="{!saveNewOrder}"/> 
             </apex:pageBlockButtons>
@@ -71,7 +79,7 @@
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>
-    <apex:form >
+    <!--<apex:form >
         <apex:pageBlock tabStyle="Order">
             <apex:pageBlockButtons location="Bottom">
                 <apex:commandButton value="Add Product To Order" action="{!saveOrderItem}"/>
@@ -88,6 +96,6 @@
                 <apex:inputField value="{!itemToAdd.UnitPrice}"/> 
             </apex:pageBlockSection>
         </apex:pageBlock>
-    </apex:form>
+    </apex:form>-->
     <apex:image url="{!$Resource.FBC_Logo}" alt="Logo for FBC"/>
 </apex:page>
