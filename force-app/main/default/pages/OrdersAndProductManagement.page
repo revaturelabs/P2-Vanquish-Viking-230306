@@ -97,5 +97,5 @@
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>-->
-    <apex:image url="{!$Resource.FBCJPG}" alt="Logo for FBC"/>
+    <apex:image url="{!$Resource.FBC_Logo}" alt="Logo for FBC"/>
 </apex:page>
