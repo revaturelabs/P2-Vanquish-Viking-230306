@@ -30,9 +30,9 @@
         <members>UseCasec19Helper</members>
         <members>CustomerStoryHelper</members> 
         <members>CustomerStoryHelperTest</members> 
-        <members>OrdersAndProductsController</members>
+        <!-- <members>OrdersAndProductsController</members>
         <members>OrderAndProductsControllerTest</members>
-        <members>OrdersAndProductsDataFactory</members>
+        <members>OrdersAndProductsDataFactory</members> -->
         <members>AccountsAndLeadsController</members>
         <members>AccountsAndLeadsTest</members>
         <members>AccountsAndLeadsDataFactory</members> 
@@ -53,7 +53,7 @@
     <types>
         <members>UseCaseC30</members>
         <members>AccountsAndLeads</members>
-        <members>OrdersAndProductManagement</members>
+        <!-- <members>OrdersAndProductManagement</members> -->
         <name>ApexPage</name>
     </types>
     <types>
