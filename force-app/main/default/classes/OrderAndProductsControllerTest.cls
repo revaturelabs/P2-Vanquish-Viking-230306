@@ -1,7 +1,7 @@
 /*Created By: Khalil Newsome
- * Last Updated: 03/26/2023
- * Description: Test for OrderAndProducts Controller
- */
+* Last Updated: 03/26/2023
+* Description: Test for OrderAndProducts Controller
+*/
 @isTest
 public class OrderAndProductsControllerTest {
     
@@ -95,11 +95,22 @@ public class OrderAndProductsControllerTest {
     
     @isTest
     static void TP_DeleteOrder(){
-         OrdersAndProductsController testcont = new OrdersAndProductsController();
+        OrdersAndProductsController testcont = new OrdersAndProductsController();
         testcont.orderOpts= OrdersAndProductsDataFactory.generateOrderList(3);
         insert testcont.orderOpts;
         testcont.orderToDelete= [SELECT Id FROM Order WHERE Name='Test1' LIMIT 1].Id;
         testcont.deleteOrder();
     }
     
+    @isTest
+    static void TP_ToAccounts(){
+        OrdersAndProductsController testcont = new OrdersAndProductsController();
+        testcont.toAccounts(); 
+    }
+    
+     @isTest
+    static void TP_ToContacts(){
+        OrdersAndProductsController testcont = new OrdersAndProductsController();
+        testcont.toContacts(); 
+    }
 }

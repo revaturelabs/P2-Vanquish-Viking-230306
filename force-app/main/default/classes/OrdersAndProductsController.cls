@@ -1,7 +1,7 @@
 /*Created By: Khalil Newsome
- * Last Updated: 03/26/2023
- * Description: Controller for Order And Product Management VF page
- */
+* Last Updated: 03/26/2023
+* Description: Controller for Order And Product Management VF page
+*/
 public class OrdersAndProductsController {
     
     public List<Order> orders {get;set;}
@@ -21,6 +21,7 @@ public class OrdersAndProductsController {
     public List<Order> orderOpts;
     public Order orderOwner;
     public Account needAccId;
+    public Id orderDeleteId{get;set;}
     
     public OrdersAndProductsController(){
         orders=[SELECT Name,OrderNumber,TotalAmount,Status,Pricebook2Id,(SELECT Quantity,Product2Id,TotalPrice FROM OrderItems) FROM Order];
@@ -57,7 +58,7 @@ public class OrdersAndProductsController {
         }
         return choices;
     }
-    
+   
     public List<SelectOption> getProductOptions(){
         List<SelectOption> choices = new List<SelectOption>();
         for(Product2 prod:products){
@@ -88,16 +89,27 @@ public class OrdersAndProductsController {
     public void saveNewOrder(){
         needAccId = [SELECT Id FROM Account WHERE Name=:accName LIMIT 1];
         Id accId= needAccId.Id;
+        if(validStatus()){
         insertingOrder = new Order(Name=orderName, AccountId = accId, EffectiveDate=inputOrder.EffectiveDate, Status=inputOrder.Status);
         insert insertingOrder;
         orders.add(insertingOrder);
+        }
+    }
+    //Validate Status field set to Draft
+    public Boolean validStatus(){
+        if(inputOrder.status!='Draft'){
+            Apexpages.addMessage(new Apexpages.message(Apexpages.severity.Error,'Order must have initial status: Draft'));
+            return false;
+        }else{
+            return true;
+        }
     }
     
     public void saveOrderItem(){
-        PricebookEntry bookToAdd = [SELECT Id FROM PricebookEntry WHERE Product2Id=:itemToAdd.Product2Id LIMIT 1];
+        PricebookEntry bookToAdd = [SELECT Id FROM PricebookEntry WHERE Product2Id=:itemToAdd.Product2Id AND Pricebook2Id='01s8b000002wiAbAAI' LIMIT 1];
         Id bookEntryId = bookToAdd.Id;
         OrderItem ordItem= new OrderItem(PricebookEntryId= bookEntryId, OrderId=orderNameProd, Quantity= itemToAdd.Quantity
-                                              , UnitPrice= itemToAdd.UnitPrice);
+                                         , UnitPrice= itemToAdd.UnitPrice);
         
         insert ordItem;
     }
@@ -109,13 +121,16 @@ public class OrdersAndProductsController {
     public void deleteOrder(){
         Order deletingOrder =[SELECT Name FROM Order WHERE Id=:orderToDelete LIMIT 1];
         delete deletingOrder;
-       	
+        deletingOrder= new Order();
+        orders=[SELECT Name,OrderNumber,TotalAmount,Status,Pricebook2Id,(SELECT Quantity,Product2Id,TotalPrice FROM OrderItems) FROM Order];
+        orderOpts=[SELECT Name,OrderNumber,Pricebook2Id,TotalAmount FROM Order WHERE Name != null];
     }
-    
+    //Links to Account visual page
     public PageReference toAccounts(){
         PageReference accPage = Page.AccountsAndLeads;
         return accPage;
     }
+    //Links to Contact visual page
     public PageReference toContacts(){
         PageReference conPage = Page.UseCaseC30;
         return conPage;
