@@ -1,0 +1,47 @@
+<template>
+    <lightning-card>
+        <lightning-icon
+            slot="title"
+            icon-name="standard:lead"
+        ></lightning-icon>
+        <lightning-button-group slot="actions">
+            <lightning-button  
+            label="Create Lead"
+            onclick={handleCreate}
+            ></lightning-button>
+            <lightning-button  
+                variant="destructive-text"
+                label="Delete Lead"
+                onclick={handleDelete}
+            ></lightning-button>
+        </lightning-button-group>
+        <template lwc:if={creatingLead}>
+            <lightning-flow
+                flow-api-name="Create_a_Lead"
+                onstatuschange={handleCreateStatus}
+            ></lightning-flow>
+        </template>
+        <template lwc:if={deletingLead}>
+            <lightning-flow
+                flow-api-name="Delete_a_Lead"
+                onstatuschange={handleDeleteStatus}
+            ></lightning-flow>
+        </template>
+        <template lwc:if={leads}>
+            <lightning-datatable
+            key-field="Id"
+            data={leads}
+            columns={columns}
+            default-sort-direction="asc"
+            sorted-direction={sortDirection}
+            sorted-by={sortedBy}
+            onsort={updateColumnSorting}
+            draft-values={draftValues}
+            onsave={handleSave}>
+        </lightning-datatable>
+        </template>
+        <template lwc:else>
+            {error}
+        </template>
+    </lightning-card>
+</template>

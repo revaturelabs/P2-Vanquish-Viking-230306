@@ -1,0 +1,47 @@
+<template>
+    <lightning-card>
+        <lightning-icon
+            slot="title"
+            icon-name="standard:account_info"
+        ></lightning-icon>
+        <lightning-button-group slot="actions">
+            <lightning-button  
+            label="Create Account"
+            onclick={handleCreate}
+            ></lightning-button>
+            <lightning-button  
+                variant="destructive-text"
+                label="Delete Account"
+                onclick={handleDelete}
+            ></lightning-button>
+        </lightning-button-group>
+        <template lwc:if={creatingAccount}>
+            <lightning-flow
+                flow-api-name="Create_an_Account"
+                onstatuschange={handleCreateStatus}
+            ></lightning-flow>
+        </template>
+        <template lwc:if={deletingAccount}>
+            <lightning-flow
+                flow-api-name="Delete_an_Account"
+                onstatuschange={handleDeleteStatus}
+            ></lightning-flow>
+        </template>
+        <template lwc:if={accounts}>
+            <lightning-datatable
+            key-field="Id"
+            data={accounts}
+            columns={columns}
+            default-sort-direction="asc"
+            sorted-direction={sortDirection}
+            sorted-by={sortedBy}
+            onsort={updateColumnSorting}
+            draft-values={draftValues}
+            onsave={handleSave}>
+        </lightning-datatable>
+        </template>
+        <template lwc:else>
+            {error}
+        </template>
+    </lightning-card>
+</template>
