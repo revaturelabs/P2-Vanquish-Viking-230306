@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#12C8FB</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>FBC Employee Hub</label>
+    <navType>Standard</navType>
+    <tabs>FBC_Accounts_Leads</tabs>
+    <tabs>FBC_Contacts</tabs>
+    <tabs>FBC_Orders_Products</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>FBC_Employee_Hub_UtilityBar</utilityBar>
+</CustomApplication>
