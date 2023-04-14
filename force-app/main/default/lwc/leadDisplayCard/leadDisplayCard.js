@@ -105,8 +105,11 @@ export default class LeadDisplayCard extends LightningElement {
     draftValues = [];
     creatingLead = false;
     deletingLead = false;
+    searching = false;
+    isSelected = false;
+    @track searchTerm = '';
 
-    @wire(getLeads)
+    @wire(getLeads, {searchTerm : '$searchTerm'})
     getWiredLeads(result){
         this.wiredLeads = result;
         if(result.data){
@@ -190,6 +193,16 @@ export default class LeadDisplayCard extends LightningElement {
             this.deletingLead = false;
             await refreshApex(this.wiredLeads);
         }
+    }
+
+    handleSearchDisplay(){
+        this.searching = !this.searching;
+        this.isSelected = !this.isSelected;
+    }
+
+    async handleSearch(event){
+        this.searchTerm = event.detail;
+        await refreshApex(this.wiredLeads);
     }
     
 }

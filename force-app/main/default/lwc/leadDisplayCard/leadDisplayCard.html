@@ -1,16 +1,21 @@
 <template>
     <lightning-card>
-        <lightning-icon
-            slot="title"
-            icon-name="standard:lead"
-        ></lightning-icon>
         <lightning-button-group slot="actions">
+            <lightning-button-stateful
+                label-when-off="Show Lead Search"
+                label-when-on="Showing Lead Search"
+                label-when-hover="Hide Lead Search"
+                selected={isSelected}
+                onclick={handleSearchDisplay}
+                variant="brand">
+            </lightning-button-stateful>
             <lightning-button  
-            label="Create Lead"
-            onclick={handleCreate}
+                label="Create Lead"
+                onclick={handleCreate}
+                variant="success"
             ></lightning-button>
             <lightning-button  
-                variant="destructive-text"
+                variant="destructive"
                 label="Delete Lead"
                 onclick={handleDelete}
             ></lightning-button>
@@ -26,6 +31,9 @@
                 flow-api-name="Delete_a_Lead"
                 onstatuschange={handleDeleteStatus}
             ></lightning-flow>
+        </template>
+        <template lwc:if={searching}>
+            <c-lead-search-card onfilter={handleSearch}></c-lead-search-card>
         </template>
         <template lwc:if={leads}>
             <lightning-datatable
