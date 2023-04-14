@@ -1,0 +1,25 @@
+<template>
+    <lightning-card>
+        <p slot="title" class="slds-text_header-medium">
+            Record Details
+        </p>
+        <lightning-button
+            label="Toggle Accounts or Leads"
+            onclick={handleToggle}
+            slot="actions"
+            variant="brand"
+        ></lightning-button>
+        <lightning-accordion active-section-name={activeSection}>
+            <lightning-accordion-section
+                name="A"
+                label="Accounts:">
+                <c-acc-display-card></c-acc-display-card>
+            </lightning-accordion-section>
+            <lightning-accordion-section
+                name="L"
+                label="Leads:">
+                <c-lead-display-card></c-lead-display-card>
+            </lightning-accordion-section>
+        </lightning-accordion>
+    </lightning-card>
+</template>
