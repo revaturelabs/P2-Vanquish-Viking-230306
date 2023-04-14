@@ -1,0 +1,33 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <lightning-icon
+                icon-name="standard:lead"
+                class="slds-float_left"
+            ></lightning-icon>
+            <p class="slds-float_left slds-p-horizontal_medium">Filter Leads by Company</p>
+        </div>
+        <lightning-input
+            type="search"
+            label="Lead Name"
+            class="slds-p-around_medium"
+            style="max-width: 20rem;"
+            value={searchTerm}
+            onchange={handleTermChange}
+        ></lightning-input>
+        <lightning-button-group class="slds-p-around_small">
+            <lightning-button
+                label="Search"
+                icon-name="utility:search"
+                variant="brand-outline"
+                onclick={filterLeads}
+            ></lightning-button>
+            <lightning-button
+                if:true={hasSearched}
+                label="Clear Search"
+                onclick={clearSearch}
+                icon-name="utility:undo">
+            </lightning-button>
+        </lightning-button-group>
+    </lightning-card>
+</template>

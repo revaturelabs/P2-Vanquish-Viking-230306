@@ -88,8 +88,11 @@ export default class AccDisplayCard extends LightningElement {
     draftValues = [];
     creatingAccount = false;
     deletingAccount = false;
+    searching = false;
+    isSelected = false;
+    @track searchTerm = '';
 
-    @wire(getAccounts)
+    @wire(getAccounts, {searchTerm : '$searchTerm'})
     getWiredAccounts(result){
         this.wiredAccounts = result;
         if(result.data){
@@ -173,6 +176,16 @@ export default class AccDisplayCard extends LightningElement {
             this.deletingAccount = false;
             await refreshApex(this.wiredAccounts);
         }
+    }
+
+    handleSearchDisplay(){
+        this.searching = !this.searching;
+        this.isSelected = !this.isSelected;
+    }
+
+    async handleSearch(event){
+        this.searchTerm = event.detail;
+        await refreshApex(this.wiredAccounts);
     }
 
 }

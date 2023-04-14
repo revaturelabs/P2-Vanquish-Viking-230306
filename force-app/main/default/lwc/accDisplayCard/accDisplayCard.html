@@ -1,16 +1,21 @@
 <template>
     <lightning-card>
-        <lightning-icon
-            slot="title"
-            icon-name="standard:account_info"
-        ></lightning-icon>
         <lightning-button-group slot="actions">
-            <lightning-button  
-            label="Create Account"
-            onclick={handleCreate}
+            <lightning-button-stateful
+                label-when-off="Show Account Search"
+                label-when-on="Showing Account Search"
+                label-when-hover="Hide Account Search"
+                selected={isSelected}
+                onclick={handleSearchDisplay}
+                variant="brand">
+            </lightning-button-stateful>
+            <lightning-button
+                variant="success"  
+                label="Create Account"
+                onclick={handleCreate}
             ></lightning-button>
             <lightning-button  
-                variant="destructive-text"
+                variant="destructive"
                 label="Delete Account"
                 onclick={handleDelete}
             ></lightning-button>
@@ -26,6 +31,9 @@
                 flow-api-name="Delete_an_Account"
                 onstatuschange={handleDeleteStatus}
             ></lightning-flow>
+        </template>
+        <template lwc:if={searching}>
+            <c-acc-search-card onfilter={handleSearch}></c-acc-search-card>
         </template>
         <template lwc:if={accounts}>
             <lightning-datatable
