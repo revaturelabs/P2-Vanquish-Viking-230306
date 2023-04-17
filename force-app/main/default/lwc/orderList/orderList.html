@@ -1,0 +1,49 @@
+<template>
+    
+    <lightning-card title="Order Display" variant="narrow">
+        <template if:true={orders.data}>
+            <lightning-datatable
+            key-field="Id"
+            data={orders.data}
+            columns={columns}
+            onsave={handleSave}
+            onrowaction={handleRowAction}
+            draft-values={draftValues}
+            column-widths-mode="auto">
+        </lightning-datatable>
+        </template>
+        <template if:true={orders.error}>
+        </template>
+        <lightning-button label="Create New Order" onclick={toggleOrderCreator}></lightning-button>
+        <template if:true={showOrderCreator}>
+            <lightning-card>
+                <lightning-record-form 
+                object-api-name={orderApiName} 
+                fields={fields}
+                onsuccess={handleSuccess}></lightning-record-form>
+            </lightning-card>
+        </template>
+    </lightning-card>
+
+    <lightning-card title="Order Items">
+        <template if:true={orderItems.data}>
+            <lightning-datatable
+            key-field="Id"
+            data={orderItems.data}
+            columns={columns2}
+            onrowaction={handleItemRowAction}
+            colum-widths-mode="auto">
+        </lightning-datatable>
+        </template>
+        <lightning-button label="Add Product to Order" onclick={ToggleAddProduct}></lightning-button>
+        <template if:true={showAddProduct}>
+            <lightning-card>
+                <lightning-record-form
+                object-api-name={orderItemApiName}
+                fields={orderItemFields}
+                onsuccess={handleItemSuccess}></lightning-record-form>
+            </lightning-card>
+        </template>
+    </lightning-card>
+
+</template>
