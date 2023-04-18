@@ -1,0 +1,33 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <img
+                class="slds-float_left"
+                style="max-width: 10rem;"
+                src={logo}
+                alt="FBC Logo"
+            />
+            <p class="slds-text_header-medium slds-float_left slds-p-around-medium slds-align_absolute-center">
+                Account and Lead Details
+            </p>
+        </div>
+        <lightning-button
+            label="Toggle Accounts or Leads"
+            onclick={handleToggle}
+            slot="actions"
+            variant="brand-outline"
+        ></lightning-button>
+        <lightning-accordion active-section-name={activeSection}>
+            <lightning-accordion-section
+                name="A"
+                label="Accounts:">
+                <c-acc-display-card></c-acc-display-card>
+            </lightning-accordion-section>
+            <lightning-accordion-section
+                name="L"
+                label="Leads:">
+                <c-lead-display-card></c-lead-display-card>
+            </lightning-accordion-section>
+        </lightning-accordion>
+    </lightning-card>
+</template>

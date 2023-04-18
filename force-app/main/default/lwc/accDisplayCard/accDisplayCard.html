@@ -1,0 +1,55 @@
+<template>
+    <lightning-card>
+        <lightning-button-group slot="actions">
+            <lightning-button-stateful
+                label-when-off="Show Account Search"
+                label-when-on="Showing Account Search"
+                label-when-hover="Hide Account Search"
+                selected={isSelected}
+                onclick={handleSearchDisplay}
+                variant="brand">
+            </lightning-button-stateful>
+            <lightning-button
+                variant="success"  
+                label="Create Account"
+                onclick={handleCreate}
+            ></lightning-button>
+            <lightning-button  
+                variant="destructive"
+                label="Delete Account"
+                onclick={handleDelete}
+            ></lightning-button>
+        </lightning-button-group>
+        <template lwc:if={creatingAccount}>
+            <lightning-flow
+                flow-api-name="Create_an_Account"
+                onstatuschange={handleCreateStatus}
+            ></lightning-flow>
+        </template>
+        <template lwc:if={deletingAccount}>
+            <lightning-flow
+                flow-api-name="Delete_an_Account"
+                onstatuschange={handleDeleteStatus}
+            ></lightning-flow>
+        </template>
+        <template lwc:if={searching}>
+            <c-acc-search-card onfilter={handleSearch}></c-acc-search-card>
+        </template>
+        <template lwc:if={accounts}>
+            <lightning-datatable
+            key-field="Id"
+            data={accounts}
+            columns={columns}
+            default-sort-direction="asc"
+            sorted-direction={sortDirection}
+            sorted-by={sortedBy}
+            onsort={updateColumnSorting}
+            draft-values={draftValues}
+            onsave={handleSave}>
+        </lightning-datatable>
+        </template>
+        <template lwc:else>
+            {error}
+        </template>
+    </lightning-card>
+</template>

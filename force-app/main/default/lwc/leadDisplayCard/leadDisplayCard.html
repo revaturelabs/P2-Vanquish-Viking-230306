@@ -1,0 +1,55 @@
+<template>
+    <lightning-card>
+        <lightning-button-group slot="actions">
+            <lightning-button-stateful
+                label-when-off="Show Lead Search"
+                label-when-on="Showing Lead Search"
+                label-when-hover="Hide Lead Search"
+                selected={isSelected}
+                onclick={handleSearchDisplay}
+                variant="brand">
+            </lightning-button-stateful>
+            <lightning-button  
+                label="Create Lead"
+                onclick={handleCreate}
+                variant="success"
+            ></lightning-button>
+            <lightning-button  
+                variant="destructive"
+                label="Delete Lead"
+                onclick={handleDelete}
+            ></lightning-button>
+        </lightning-button-group>
+        <template lwc:if={creatingLead}>
+            <lightning-flow
+                flow-api-name="Create_a_Lead"
+                onstatuschange={handleCreateStatus}
+            ></lightning-flow>
+        </template>
+        <template lwc:if={deletingLead}>
+            <lightning-flow
+                flow-api-name="Delete_a_Lead"
+                onstatuschange={handleDeleteStatus}
+            ></lightning-flow>
+        </template>
+        <template lwc:if={searching}>
+            <c-lead-search-card onfilter={handleSearch}></c-lead-search-card>
+        </template>
+        <template lwc:if={leads}>
+            <lightning-datatable
+            key-field="Id"
+            data={leads}
+            columns={columns}
+            default-sort-direction="asc"
+            sorted-direction={sortDirection}
+            sorted-by={sortedBy}
+            onsort={updateColumnSorting}
+            draft-values={draftValues}
+            onsave={handleSave}>
+        </lightning-datatable>
+        </template>
+        <template lwc:else>
+            {error}
+        </template>
+    </lightning-card>
+</template>
