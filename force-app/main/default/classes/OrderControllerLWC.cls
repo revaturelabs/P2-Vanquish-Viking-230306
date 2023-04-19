@@ -84,7 +84,7 @@ public with sharing class OrderControllerLWC {
 
     @AuraEnabled
     public static void addWindowsDesktop(Id orderId){
-          PriceBookEntry desktop = [SELECT Name,Id,Pricebook2Id,Product2Id,UnitPrice FROM PricebookEntry WHERE Product2.Name='Windows Developer Desktop'];
+          PriceBookEntry desktop = [SELECT Name,Id,Pricebook2Id,Product2Id,UnitPrice FROM PricebookEntry WHERE Product2.Name='Windows Developer Desktop' LIMIT 1];
         List<OrderItem> chosenItems = new List<OrderItem>();
         
         Order chosenOrder= [SELECT Id, PriceBook2Id FROM Order WHERE Id =:orderId];
