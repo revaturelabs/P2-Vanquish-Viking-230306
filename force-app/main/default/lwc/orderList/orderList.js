@@ -3,8 +3,9 @@ import getOrders from '@salesforce/apex/OrderControllerLWC.getOrders';
 import deleteOrder from '@salesforce/apex/OrderControllerLWC.deleteOrder';
 import getOrderItems from '@salesforce/apex/OrderControllerLWC.getOrderItems';
 import add12CountPencils from '@salesforce/apex/OrderControllerLWC.add12CountPencils';
-import add500PaperReam from '@salesforce/apex/OrderControllerLWC.add500PaperReam';
+import addWindowsDesktop from '@salesforce/apex/OrderControllerLWC.addWindowsDesktop';
 import addMacBook from '@salesforce/apex/OrderControllerLWC.addMacBook';
+import FBCJPG from '@salesforce/resourceUrl/FBCJPG';
 import {refreshApex} from '@salesforce/apex';
 import { updateRecord } from 'lightning/uiRecordApi';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
@@ -38,8 +39,8 @@ const COLUMNS=[
         title:'Add Product',
         iconPosition:'left'}},
     {type:'button', typeAttributes:{
-        label:'Add Paper Ream',
-        name:'Add Paper Ream',
+        label:'Add Desktop',
+        name:'Add Windows Desktop',
         disabled:false,
         iconPosition:'left'}},
     {type:'button', typeAttributes:{
@@ -63,9 +64,14 @@ export default class OrderList extends LightningElement {
     columns = COLUMNS;
     columns2=itemCOLUMNS;
     draftValues = [];
+    activeSections='A';
 
     showOrderCreator=false;
     showAddProduct= false;
+
+    activeSectionMessage= '';
+
+    logo = FBCJPG;
 
     @track
     actions=actions;
@@ -124,8 +130,8 @@ export default class OrderList extends LightningElement {
                     this.handleAddMac(row.Id);  
                     break;
 
-                case 'Add Paper Ream':
-                    this.handleAddReam(row.Id);
+                case 'Add Windows Desktop':
+                    this.handleAddDesktop(row.Id);
                     break;
 
                 case 'Add Pencils':
@@ -133,6 +139,15 @@ export default class OrderList extends LightningElement {
                     break;
 
                 default:
+            }
+        }
+        handleSectionToggle(event){
+            const openSections = event.detail.openSections;
+
+            if(openSections.length===0){
+                this.activeSectionsMessage = 'Display Order Products';
+            }else{
+                this.activeSectionMessage = 'Order Products Displaying';
             }
         }
 
@@ -179,13 +194,13 @@ export default class OrderList extends LightningElement {
             return refreshApex(this.orders, this.orderItems);
         }
 
-       async handleAddReam(itemToAdd){
-           await add500PaperReam({orderId:itemToAdd});
-            const addPaper = new ShowToastEvent({
+       async handleAddDesktop(itemToAdd){
+           await addWindowsDesktop({orderId:itemToAdd});
+            const addDesktop = new ShowToastEvent({
                 title:'Paper Added',
-                message:'A Paper Ream of 500 was added to the Order',
+                message:'A Windows Desktop was added to the Order',
                 variant:'success'});
-                this.dispatchEvent(addPaper);
+                this.dispatchEvent(addDesktop);
                 return refreshApex(this.orders, this.orderItems);
         }
 
