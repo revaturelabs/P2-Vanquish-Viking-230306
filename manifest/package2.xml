@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>employeeHubTabSet</members>
+        <name>LightningComponentBundle</name>
+    </types>
+        <types>
+        <members>FBC_Employee_Hub</members> <!--Khalil's-->
+        <members>FBC_LWC_Employee_Hub</members> <!--Chase's-->
+        <name>FlexiPage</name>
+    </types>
+    <version>57.0</version>
+</Package>
