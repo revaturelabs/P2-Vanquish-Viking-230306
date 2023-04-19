@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>recordContainer</componentName>
+                <identifier>c_recordContainer</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>region1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>orderList</componentName>
+                <identifier>c_orderList</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>region2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>contactManager</componentName>
+                <identifier>c_contactManager</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>region3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>FBC Employee Hub</masterLabel>
+    <template>
+        <name>flexipage:appHomeTemplateHeaderTwoColumnsEqualWidth</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

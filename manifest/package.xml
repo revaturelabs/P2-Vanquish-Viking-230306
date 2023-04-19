@@ -66,6 +66,10 @@
 		<members>FBCJPG</members>
 		<name>StaticResource</name>
 	</types>
+    <types>
+        <members>FBC_Employee_Hub</members>
+        <name>FlexiPage</name>
+    </types>
     <version>56.0</version> 
 </Package>
 
