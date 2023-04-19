@@ -1,6 +1,17 @@
 <template>
-    
-    <lightning-card title="Order Display" variant="narrow">
+  
+    <lightning-card variant="narrow">
+        <div slot="title">
+            <img
+                class="slds-float_left"
+                style="max-width: 10rem;"
+                src={logo}
+                alt="FBC Logo"
+            />
+            <p class="slds-text_header-medium slds-float_left slds-p-around-medium slds-align_absolute-center">
+                Order Display
+            </p>
+        </div>
         <template if:true={orders.data}>
             <lightning-datatable
             key-field="Id"
@@ -24,8 +35,13 @@
             </lightning-card>
         </template>
     </lightning-card>
-
-    <lightning-card title="Order Items">
+    <lightning-accordion allow-multiple-sections-open
+                            onsectiontoggle={handleSectionToggle}
+                            active-section-name={activeSections}>
+        
+    <lightning-card>
+        <lightning-accordion-section 
+            name="A" label="Order Products">
         <template if:true={orderItems.data}>
             <lightning-datatable
             key-field="Id"
@@ -35,15 +51,8 @@
             colum-widths-mode="auto">
         </lightning-datatable>
         </template>
-        <lightning-button label="Add Product to Order" onclick={ToggleAddProduct}></lightning-button>
-        <template if:true={showAddProduct}>
-            <lightning-card>
-                <lightning-record-form
-                object-api-name={orderItemApiName}
-                fields={orderItemFields}
-                onsuccess={handleItemSuccess}></lightning-record-form>
-            </lightning-card>
-        </template>
+    </lightning-accordion-section>
     </lightning-card>
 
+</lightning-accordion>
 </template>

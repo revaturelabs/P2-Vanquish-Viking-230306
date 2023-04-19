@@ -83,20 +83,20 @@ public with sharing class OrderControllerLWC {
     }
 
     @AuraEnabled
-    public static void add500PaperReam(Id orderId){
-          PriceBookEntry paperReam = [SELECT Name,Id,Pricebook2Id,Product2Id,UnitPrice FROM PricebookEntry WHERE Product2.Name='White Copy Paper - 500 Sheets'];
+    public static void addWindowsDesktop(Id orderId){
+          PriceBookEntry desktop = [SELECT Name,Id,Pricebook2Id,Product2Id,UnitPrice FROM PricebookEntry WHERE Product2.Name='Windows Developer Desktop'];
         List<OrderItem> chosenItems = new List<OrderItem>();
         
         Order chosenOrder= [SELECT Id, PriceBook2Id FROM Order WHERE Id =:orderId];
         
         if(chosenOrder.Pricebook2Id==null){
-            chosenOrder.Pricebook2Id= paperReam.Pricebook2Id;
+            chosenOrder.Pricebook2Id= desktop.Pricebook2Id;
             update chosenOrder;}
         
         chosenItems.add(new OrderItem(
-            Product2Id=paperReam.Product2Id,
-            UnitPrice=paperReam.UnitPrice,
-            PricebookEntryId=paperReam.Id,
+            Product2Id=desktop.Product2Id,
+            UnitPrice=desktop.UnitPrice,
+            PricebookEntryId=desktop.Id,
             OrderId=orderId,
             Quantity=1));
          
