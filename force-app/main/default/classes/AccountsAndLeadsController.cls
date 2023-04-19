@@ -32,7 +32,7 @@ public with sharing class AccountsAndLeadsController {
     
     public AccountsAndLeadsController() {
         accs = [SELECT Name, Rating, AnnualRevenue, Industry, Phone, BillingCity, BillingState, NumberOfEmployees FROM Account];
-        leads = [SELECT FirstName, LastName, Company, Status, Title, Industry, Rating, Phone, Email FROM Lead];
+        leads = [SELECT FirstName, LastName, Company, Status, Title, Industry, Rating, Phone, Email, Conversion_Date__c FROM Lead];
         accMap = new Map<String,Account>();
         leadMap = new Map<String,Lead>();
         desiredAccount = new Account();
