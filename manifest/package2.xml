@@ -9,5 +9,12 @@
         <members>FBC_LWC_Employee_Hub</members> <!--Chase's-->
         <name>FlexiPage</name>
     </types>
+    <types>
+        <members>Create_an_Account</members>
+        <members>Delete_an_Account</members>
+        <members>Create_a_Lead</members>
+        <members>Delete_a_Lead</members>
+        <name>Flow</name>
+    </types>
     <version>57.0</version>
 </Package>
